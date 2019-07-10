@@ -23,8 +23,9 @@ light = 16
 GPIO.setup(light, GPIO.OUT)
 while True:
     GPIO.output(light,1)
-    time.sleep(.5)
+    time.sleep(1)
     GPIO.output(light,0)
+    time.sleep(1)
 
 
 GPIO.cleanup()
