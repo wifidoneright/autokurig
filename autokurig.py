@@ -10,7 +10,13 @@ except RuntimeError:
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 mode = GPIO.getmode()
-light = 16
+wLevel = 16
+# Setup Pins
+GPIO.setup(wLevel, GPIO.OUT)
+
+
+GPIO.output(wLevel,1) #set water to full
+
 # set channel
 # GPIO.setup(channel, GPIO.IN)
 # GPIO.setup(channel, GPIO.OUT)
@@ -20,12 +26,12 @@ light = 16
 # GPIO.output(channel, state)
 # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
 
-GPIO.setup(light, GPIO.OUT)
-while True:
-    GPIO.output(light,1)
-    time.sleep(1)
-    GPIO.output(light,0)
-    time.sleep(1)
+# GPIO.setup(wLevel, GPIO.OUT)
+# while True:
+#     GPIO.output(wLevel,1)
+#     time.sleep(1)
+#     GPIO.output(wLevel,0)
+#     time.sleep(1)
 
 
 GPIO.cleanup()
