@@ -2,6 +2,7 @@
 
 try:
     import RPi.GPIO as GPIO
+    import time
 except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
@@ -9,7 +10,7 @@ except RuntimeError:
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 mode = GPIO.getmode()
-
+light = 16
 # set channel
 # GPIO.setup(channel, GPIO.IN)
 # GPIO.setup(channel, GPIO.OUT)
@@ -19,7 +20,11 @@ mode = GPIO.getmode()
 # GPIO.output(channel, state)
 # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
 
-GPIO.setup(3, GPIO.OUT)
-GPIO.output(3,1)
+GPIO.setup(light, GPIO.OUT)
+for i in range(0,10):
+    GPIO.output(light,1)
+    time.sleep(.5)
+    GPIO.output(light,0)
+
 
 GPIO.cleanup()
