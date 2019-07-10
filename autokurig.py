@@ -21,7 +21,7 @@ light = 16
 # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
 
 GPIO.setup(light, GPIO.OUT)
-while true:
+while True:
     GPIO.output(light,1)
     time.sleep(.5)
     GPIO.output(light,0)
