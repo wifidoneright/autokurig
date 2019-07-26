@@ -102,7 +102,7 @@ def make(size):
 
     return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
 
-@app.route('/api/v1/water', method=['GET'])
+@app.route('/api/v1/water', methods=['GET'])
 def water():
 
     GPIO.setmode(GPIO.BOARD)
