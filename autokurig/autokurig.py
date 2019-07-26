@@ -83,7 +83,7 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 #index or default API page
 @app.route('/', methods=['GET'])
 def home():
-    return "You have reached your autokurig."
+    return "HI  I'm autokurig."
 
 # Check if site exists
 @app.route('/api/v1/brew/<size>', methods=['GET'])
@@ -137,4 +137,4 @@ def water():
 
     
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
