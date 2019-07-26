@@ -1,19 +1,25 @@
 #! /usr/bin/python3
-import flask
-from flask import request, Response
-from flask_cors import CORS, cross_origin
-import requests, json
-import urllib3
-import re
-import pdb
-import optparse
-from datetime import datetime
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-SSL_VERIFY = False
+try:
+    from flask import request, Response, Flask
+    # from flask_cors import CORS, cross_origin
+    import requests, json
+    # import urllib3
+    # import re
+    # import pdb
+    # import optparse
+    # from datetime import datetime
+    # from requests.packages.urllib3.exceptions import InsecureRequestWarning
+    # urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+    # SSL_VERIFY = False
+    import RPi.GPIO as GPIO
+    import time
+    
+except RuntimeError:
+    print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
-app = flask.Flask(__name__)
+
+app = Flask(__name__)
 app.config["DEBUG"] = True
 # Set up the command-line options
 # default_host = "https://titan.wal-mart.com:443"
@@ -77,62 +83,58 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 #index or default API page
 @app.route('/', methods=['GET'])
 def home():
-    return "You have reached the Mist Cutover API."
+    return "You have reached your autokurig."
 
 # Check if site exists
-@app.route('/api/v1/exist/<siteNumber>', methods=['GET'])
-def check(siteNumber):
-    ''' Route will validate if a site exists '''
-## if there are ever any sites that have the same name then only the first match will return
-## need to handle that
-    for org in orgList:
+@app.route('/api/v1/brew/<size>', methods=['GET'])
+def make(size):
+    ''' Route will brew a coffee '''
 
-        url = "https://api.mist.com/api/v1/orgs/"+ org +"/sites"
+    # url = "https://api.mist.com/api/v1/orgs/"+ org +"/sites"
 
-        responseData = send_request(url) #4754 8209 0001
+    # responseData = send_request(url) #4754 8209 0001
 
-        for item in responseData:
-            if siteNumber != item['name']:
-                continue
-            else:
-                return Response(json.dumps({"Success":True}), mimetype='application/json')
+    # for item in responseData:
+    #     if siteNumber != item['name']:
+    #         continue
+    #     else:
+    #         return Response(json.dumps({"Success":True}), mimetype='application/json')
 
-    return Response(json.dumps({"Success":False}), mimetype='application/json')
+    return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
+
+@app.route('/api/v1/water', method=['GET'])
+def water():
+
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setwarnings(False)
+    mode = GPIO.getmode()
+    wLevel = 16
+    # Setup Pins
+    GPIO.setup(wLevel, GPIO.OUT)
 
 
-try:
-    import RPi.GPIO as GPIO
-    import time
+    GPIO.output(wLevel,1) #set water to full
+
+    # set channel
+    # GPIO.setup(channel, GPIO.IN)
+    # GPIO.setup(channel, GPIO.OUT)
+    # GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
+    # read channel
+    # GPIO.input(channel)
+    # GPIO.output(channel, state)
+    # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
+
+    # GPIO.setup(wLevel, GPIO.OUT)
+    # while True:
+    #     GPIO.output(wLevel,1)
+    #     time.sleep(1)
+    #     GPIO.output(wLevel,0)
+    #     time.sleep(1)
+
+
+    GPIO.cleanup()
+    return Response("water is now Full"')
+
     
-except RuntimeError:
-    print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
-
-
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
-mode = GPIO.getmode()
-wLevel = 16
-# Setup Pins
-GPIO.setup(wLevel, GPIO.OUT)
-
-
-GPIO.output(wLevel,1) #set water to full
-
-# set channel
-# GPIO.setup(channel, GPIO.IN)
-# GPIO.setup(channel, GPIO.OUT)
-# GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
-# read channel
-# GPIO.input(channel)
-# GPIO.output(channel, state)
-# State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
-
-# GPIO.setup(wLevel, GPIO.OUT)
-# while True:
-#     GPIO.output(wLevel,1)
-#     time.sleep(1)
-#     GPIO.output(wLevel,0)
-#     time.sleep(1)
-
-
-GPIO.cleanup()
+if __name__ == "__main__":
+    app.run()
