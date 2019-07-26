@@ -133,7 +133,7 @@ def water():
 
 
     GPIO.cleanup()
-    return Response("water is now Full"')
+    return Response("water is now Full")
 
     
 if __name__ == "__main__":
