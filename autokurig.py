@@ -17,36 +17,11 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 # Set up the command-line options
 # default_host = "https://titan.wal-mart.com:443"
-default_host = "https://oser502444.homeoffice.wal-mart.com:8080"
-default_key = "a4545186-441a-45d6-9518-ab3de59e4c86"
-default_test = "prod"
-parser = optparse.OptionParser()
-parser.add_option("-H", "--host",
-    help="Hostname of the Flask app " + \
-        "[default %s]" % default_host,
-    default=default_host)
-parser.add_option("-K", "--key",
-    help="Key used to authenticate to titan " + \
-        "[default %s]" % default_key,
-    default=default_key)
-parser.add_option("-T", "--test",
-    help="Test=<type of test>" + \
-        "[default %s]" % default_test,
-    default=default_test)
-
-options, _ = parser.parse_args()
-
+authToken = ""
 
 def send_request(url="", requestType="GET", payload="", titanPayload=None):
     ''' function will send RESTFUL requests to Mist's API'''
     try:
-        http_proxy  = "sysproxy.wal-mart.com:8080"
-        https_proxy = "sysproxy.wal-mart.com:8080"
-
-        proxyDict = { 
-                    "http"  : http_proxy, 
-                    "https" : https_proxy
-                    }
 
         print("Payload=",payload)
 
