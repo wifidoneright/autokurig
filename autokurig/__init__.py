@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 try:
-    from flask import request, Response, Flask
+    from flask import Flask, request, Response, 
     # from flask_cors import CORS, cross_origin
     import requests, json
     # import urllib3
@@ -137,4 +137,4 @@ def water():
 
     
 if __name__ == "__main__":
-    app.run(debug=True,port=80)
+    app.run(host=0.0.0.0,debug=True,port=80)
