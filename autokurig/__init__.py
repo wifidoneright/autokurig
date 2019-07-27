@@ -21,62 +21,60 @@ except RuntimeError:
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-# Set up the command-line options
-# default_host = "https://titan.wal-mart.com:443"
 authToken = ""
 
-def send_request(url="", requestType="GET", payload="", titanPayload=None):
-    ''' function will send RESTFUL requests to Mist's API'''
-    try:
+# def send_request(url="", requestType="GET", payload="", titanPayload=None):
+#     ''' function will send RESTFUL requests to Mist's API'''
+#     try:
 
-        print("Payload=",payload)
+#         print("Payload=",payload)
 
-        headers = {
-        'Authorization': "Token " + authToken,
-        'Content-Type': "application/json",
-        'cache-control': "no-cache"
-        }
+#         headers = {
+#         'Authorization': "Token " + authToken,
+#         'Content-Type': "application/json",
+#         'cache-control': "no-cache"
+#         }
 
-        response = requests.request(requestType, url, headers=headers,
-                                    verify=False, proxies=proxyDict, data=payload)
+#         response = requests.request(requestType, url, headers=headers,
+#                                     verify=False, proxies=proxyDict, data=payload)
 
-        print("#### RESPONSE  #####")
+#         print("#### RESPONSE  #####")
 
-        if response.status_code != 200:
-            print("HTTP CODE: {} ERROR RESPONSE: {}".format(response.status_code, response.text))
-            if titanPayload != None:
-                for i in titanPayload:
-                    # write error to titan item
-                    # prov_stat_update(i['id'], "error", i['user'], "received error code " + str(response.status_code))
-                    data = json.loads(response.text)
-                # return json.loads(response.text)
-                return data
-            else:
-                print("HTTP CODE: {} SUCCESS RESPONSE: {}".format(response.status_code, response.text))
-                data = json.loads(response.text)
+#         if response.status_code != 200:
+#             print("HTTP CODE: {} ERROR RESPONSE: {}".format(response.status_code, response.text))
+#             if titanPayload != None:
+#                 for i in titanPayload:
+#                     # write error to titan item
+#                     # prov_stat_update(i['id'], "error", i['user'], "received error code " + str(response.status_code))
+#                     data = json.loads(response.text)
+#                 # return json.loads(response.text)
+#                 return data
+#             else:
+#                 print("HTTP CODE: {} SUCCESS RESPONSE: {}".format(response.status_code, response.text))
+#                 data = json.loads(response.text)
 
-            return data
+#             return data
 
-        if response.status_code in range(400, 599):
-            print("HTTP CODE: {} ERROR RESPONSE: {}".format(
-                response.status_code, response.text))
-            if titanPayload != None:
-                for i in titanPayload:
-                    # write error to titan item
-                    data = json.loads(response.text)
-                return data
-            else:
-                data = json.loads(response.text)
+#         if response.status_code in range(400, 599):
+#             print("HTTP CODE: {} ERROR RESPONSE: {}".format(
+#                 response.status_code, response.text))
+#             if titanPayload != None:
+#                 for i in titanPayload:
+#                     # write error to titan item
+#                     data = json.loads(response.text)
+#                 return data
+#             else:
+#                 data = json.loads(response.text)
 
-            return data
+#             return data
 
-        data = json.loads(response.text)
-        return data
-    ## add logging in the whole thing
+#         data = json.loads(response.text)
+#         return data
+#     ## add logging in the whole thing
 
-    except Exception as e:
-        print("ya done broke it")
-        raise e
+#     except Exception as e:
+#         print("ya done broke it")
+#         raise e
         
         
 # @cross_origin(supports_credentials=True)  ##CORS
@@ -137,4 +135,4 @@ def water():
 
     
 if __name__ == "__main__":
-    app.run(host=0.0.0.0,debug=True,port=80)
+    app.run(debug=True,port=80)
