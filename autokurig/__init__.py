@@ -2,7 +2,7 @@
 try:
     from flask import (Flask, request, Response)
     # from flask_cors import CORS, cross_origin
-    import (requests, json)
+    import requests, json
     # import urllib3
     # import re
     # import pdb
