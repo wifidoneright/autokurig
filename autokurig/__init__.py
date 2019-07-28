@@ -1,4 +1,4 @@
-# from flask import Flask
-# app = Flask(__name__)
+from flask import Flask, request, Response
+app = Flask(__name__)
 
-# import autokurig.app
+import autokurig.views

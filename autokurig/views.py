@@ -1,7 +1,8 @@
 #! /usr/bin/python3
 
 try:
-    from flask import request, Response, Flask
+    from autokurig import app
+    # from flask import request, Response, Flask
     # from flask_cors import CORS, cross_origin
     import requests, json
     # import urllib3
