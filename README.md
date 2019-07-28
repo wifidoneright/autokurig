@@ -26,6 +26,10 @@ sudo apt-get install libapache2-mod-wsgi-py3 python-dev
 cd ~
 git clone https://github.com/eventuallyiwin/autokurig.git
  ```
+
+### move .conf file to the active sites directory
+``` sudo mv /home/pi/autokurig/autokurig.conf /etc/apache2/sites-available/autokurig.conf
+```
 ### activate site
 ```sudo a2ensite /etc/apache2/sites-available/autokurig.conf```
 
