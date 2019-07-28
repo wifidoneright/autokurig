@@ -89,7 +89,7 @@ def home():
 
 
 # Check if site exists
-@app.route('/api/v1/brew/<size>', methods=['GET'])
+@app.route('/v1/brew/<size>', methods=['GET'])
 def make(size):
     ''' Route will brew a coffee '''
 
@@ -105,7 +105,7 @@ def make(size):
 
     return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
 
-@app.route('/api/v1/water', methods=['GET'])
+@app.route('/v1/water', methods=['GET'])
 def water():
 
     GPIO.setmode(GPIO.BOARD)
