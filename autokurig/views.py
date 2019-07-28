@@ -83,10 +83,7 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 #index or default API page
 @app.route('/', methods=['GET'])
 def home():
-     templateData = {
-      'title' : 'AUTOKURIG',
-      'time': timeString
-      }
+    templateData = { 'title' : 'AUTOKURIG'}
     return render_template('static/index.html', **templateData)
 
 
