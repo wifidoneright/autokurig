@@ -1,7 +1,7 @@
 #!/bin/bash
 
-APPNAME = "autokurig"
-APPDIR = "/home/pi/$APPNAME"
+APPNAME = autokurig
+APPDIR = /home/pi/$APPNAME
 cd $APPDIR
 git pull
 sudo mv $APPDIR/$APPNAME.conf /etc/apache2/sites-available/$APPNAME.conf
