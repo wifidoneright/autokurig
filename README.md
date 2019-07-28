@@ -13,6 +13,9 @@ this project assumes the following
 sudo apt update
 sudo apt install apache2
 ```
+#### Allow user "pi" to run GPIO input/output
+```sudo rpi-update```
+```sudo adduser pi gpio```
 
 #### Install mod_wsgi
 for python 3
@@ -45,3 +48,8 @@ apache2 -f /etc/apache2/apache2.conf -k start
 
 # Referenced pages
 https://www.codementor.io/abhishake/minimal-apache-configuration-for-deploying-a-flask-app-ubuntu-18-04-phu50a7ft
+
+https://raspberrypi.stackexchange.com/questions/40105/access-gpio-pins-without-root-no-access-to-dev-mem-try-running-as-root
+
+```sudo rpi-update```
+```sudo adduser pi gpio```
