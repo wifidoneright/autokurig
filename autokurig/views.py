@@ -2,7 +2,6 @@
 
 try:
     from autokurig import app
-    # from flask import request, Response, Flask
     # from flask_cors import CORS, cross_origin
     import requests, json
     # import urllib3
@@ -21,7 +20,6 @@ except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
 
-# app = Flask(__name__)
 app.config["DEBUG"] = True
 # Set up the command-line options
 # default_host = "https://titan.wal-mart.com:443"
@@ -85,7 +83,12 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 #index or default API page
 @app.route('/', methods=['GET'])
 def home():
-    return "HI  I'm autokurig."
+    return """HI  I'm autokurig. Here are a few things that you can do
+    
+    GET /api/v1/brew/:size
+    GET /api/v1/checkwater
+    
+    """
 
 # Check if site exists
 @app.route('/api/v1/brew/<size>', methods=['GET'])
