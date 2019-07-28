@@ -21,9 +21,9 @@ sudo apt-get install libapache2-mod-wsgi-py3 python-dev
 ```
 
 ## download to your PI
-
+everything is set up to run from the user pi home directory
 ``` 
-cd ~
+cd /home/pi/
 git clone https://github.com/eventuallyiwin/autokurig.git
  ```
 now run deploy.bash
