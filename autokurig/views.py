@@ -85,7 +85,7 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 @app.route('/', methods=['GET'])
 def home():
     templateData = { 'title' : 'AUTOKURIG'}
-    return render_template('static/index.html', **templateData)
+    return render_template('./static/index.html', **templateData)
 
 
 # Check if site exists
