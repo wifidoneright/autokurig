@@ -21,7 +21,7 @@ except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 app.config["DEBUG"] = True
 # Set up the command-line options
 # default_host = "https://titan.wal-mart.com:443"
