@@ -89,7 +89,7 @@ def home():
 
 
 # Check if site exists
-@app.route('/api/brew/<size>', methods=['GET'])
+@app.route('/api/brew/<size>', methods=['POST'])
 def make(size):
     ''' Route will brew a coffee '''
 
