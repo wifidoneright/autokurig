@@ -83,12 +83,12 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 #index or default API page
 @app.route('/', methods=['GET'])
 def home():
-    return """HI  I'm autokurig. Here are a few things that you can do
-    
-    GET /api/v1/brew/:size
-    GET /api/v1/checkwater
-    
-    """
+     templateData = {
+      'title' : 'AUTOKURIG',
+      'time': timeString
+      }
+    return render_template('static/index.html', **templateData)
+
 
 # Check if site exists
 @app.route('/api/v1/brew/<size>', methods=['GET'])
