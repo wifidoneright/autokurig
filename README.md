@@ -28,8 +28,9 @@ git clone https://github.com/eventuallyiwin/autokurig.git
  ```
 
 ### move .conf file to the active sites directory
-``` sudo mv /home/pi/autokurig/autokurig.conf /etc/apache2/sites-available/autokurig.conf
-```
+``` sudo mv /home/pi/autokurig/autokurig.conf /etc/apache2/sites-available/autokurig.conf ```
+#### restart the apache service
+``` sudo service apache2 restart ```
 ### activate site
 ```sudo a2ensite /etc/apache2/sites-available/autokurig.conf```
 
