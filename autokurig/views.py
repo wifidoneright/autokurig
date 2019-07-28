@@ -2,7 +2,7 @@
 
 try:
     from autokurig import app
-    from flask import render_template
+    from flask import render_template, request, Response
     # from flask_cors import CORS, cross_origin
     import requests, json
     # import urllib3
