@@ -15,7 +15,7 @@ sudo apt install apache2
 ```
 
 #### Install mod_wsgi
-for python 3.6 (preferable)
+for python 3
 ```
 sudo apt-get install libapache2-mod-wsgi-py3 python-dev
 ```
