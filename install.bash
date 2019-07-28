@@ -1,8 +1,8 @@
 #!/bin/bash
 
-APPNAME = autokurig
+APPNAME=autokurig
 print($APPNAME)
-APPDIR = /home/pi/$APPNAME
+APPDIR=/home/pi/$APPNAME
 print($APPDIR)
 # cd $APPDIR
 # git pull
