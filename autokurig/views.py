@@ -52,8 +52,8 @@ def send_request(url="", requestType="GET", payload=""):
 
         if response.status_code in range(400, 599):
             print("HTTP CODE: {} ERROR RESPONSE: {}".format(
-                response.status_code, response.text))
-                data = json.loads(response.text)
+            response.status_code, response.text))
+            data = json.loads(response.text)
 
             return data
 
