@@ -44,9 +44,9 @@ def send_request(url="", requestType="GET", payload=""):
 
         if response.status_code != 200:
             print("HTTP CODE: {} ERROR RESPONSE: {}".format(response.status_code, response.text))
-            else:
-                print("HTTP CODE: {} SUCCESS RESPONSE: {}".format(response.status_code, response.text))
-                data = json.loads(response.text)
+        else:
+            print("HTTP CODE: {} SUCCESS RESPONSE: {}".format(response.status_code, response.text))
+            data = json.loads(response.text)
 
             return data
 
