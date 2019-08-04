@@ -77,22 +77,8 @@ def home():
 # Check if site exists
 @app.route('/api/brew/<size>', methods=['GET'])
 def make(size):
-    ''' Route will brew a coffee '''
-
-    # url = "https://api.mist.com/api/v1/orgs/"+ org +"/sites"
-
-    # responseData = send_request(url) #4754 8209 0001
-
-    # for item in responseData:
-    #     if siteNumber != item['name']:
-    #         continue
-    #     else:
-    #         return Response(json.dumps({"Success":True}), mimetype='application/json')
-
-    return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
-
-@app.route('/api/water', methods=['GET'])
-def water():
+    ''' Route will brew a coffee based on 
+    the size given (small, medium, large)'''
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
@@ -122,8 +108,7 @@ def water():
 
 
     GPIO.cleanup()
-    return Response("water is now Full")
-
+    return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
     
 if __name__ == "__main__":
     app.run(debug=True,port=80, host='0.0.0.0')
