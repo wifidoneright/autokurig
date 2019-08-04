@@ -82,17 +82,16 @@ def make(size):
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
     mode = GPIO.getmode()
-    wLevel = 16
+    brewLarge = 16
     lidSensor = 40
     # Setup Pins
     try:
-        print("Setting pin output")
+        print("activating pins")
         GPIO.setup(wLevel, GPIO.OUT)
         GPIO.setup(lidSensor, GPIO.OUT)
     except Exception as e:
         return Response(e)
-    print("activating pins")
-    GPIO.output(wLevel,1) #set water to full
+    GPIO.output(brewLarge,1) #set water to full
     GPIO.output(lidSensor,1) #open the relay
     time.sleep(3)
     GPIO.output(lidSensor,0) #open the relay
@@ -106,11 +105,11 @@ def make(size):
     # GPIO.output(channel, state)
     # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
 
-    # GPIO.setup(wLevel, GPIO.OUT)
+    # GPIO.setup(brewLarge, GPIO.OUT)
     # while True:
-    #     GPIO.output(wLevel,1)
+    #     GPIO.output(brewLarge,1)
     #     time.sleep(1)
-    #     GPIO.output(wLevel,0)
+    #     GPIO.output(brewLarge,0)
     #     time.sleep(1)
 
 
