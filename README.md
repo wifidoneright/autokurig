@@ -22,6 +22,10 @@ for python 3
 ```
 sudo apt-get install libapache2-mod-wsgi-py3 python-dev
 ```
+### Permissions
+Your new web server doesn't have rights to the 
+GOIP user group. run the following command to add your web server user to the GPIO group
+```usermod -a -G gpio www-data```
 
 ## download to your PI
 everything is set up to run from the user pi home directory

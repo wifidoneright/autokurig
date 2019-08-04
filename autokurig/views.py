@@ -86,10 +86,12 @@ def make(size):
     lidSensor = 40
     # Setup Pins
     try:
+        print("Setting pin output")
         GPIO.setup(wLevel, GPIO.OUT)
         GPIO.setup(lidSensor, GPIO.OUT)
     except Exception as e:
         return Response(e)
+    print("activating pins")
     GPIO.output(wLevel,1) #set water to full
     GPIO.output(lidSensor,1) #open the relay
     time.sleep(3)
