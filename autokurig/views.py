@@ -113,7 +113,7 @@ def make(size):
         GPIO.cleanup()
         return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
     except Exception as e:
-        return Response(json.dumps(e), mimetype='application/json')
+        return Response(e, mimetype='application/json')
     
 if __name__ == "__main__":
     app.run(debug=True,port=80, host='0.0.0.0')
