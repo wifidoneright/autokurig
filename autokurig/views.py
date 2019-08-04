@@ -91,10 +91,12 @@ def make(size):
         GPIO.setup(lidSensor, GPIO.OUT)
     except Exception as e:
         return Response(e)
-    GPIO.output(brewLarge,1) #set water to full
+    
     GPIO.output(lidSensor,1) #open the relay
-    time.sleep(3)
+    time.sleep(1)
     GPIO.output(lidSensor,0) #open the relay
+    time.sleep(3)
+    GPIO.output(brewLarge,1) #set water to full
 
     # set channel
     # GPIO.setup(channel, GPIO.IN)
