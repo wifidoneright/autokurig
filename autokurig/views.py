@@ -23,11 +23,10 @@ except RuntimeError:
 
 app.config["DEBUG"] = True
 # Set up the command-line options
-# default_host = "https://titan.wal-mart.com:443"
+# default_host = ""
 authToken = ""
 
-def send_request(url="", requestType="GET", payload="", titanPayload=None):
-    ''' function will send RESTFUL requests to Mist's API'''
+def send_request(url="", requestType="GET", payload=""):
     try:
 
         print("Payload=",payload)
@@ -45,13 +44,6 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
 
         if response.status_code != 200:
             print("HTTP CODE: {} ERROR RESPONSE: {}".format(response.status_code, response.text))
-            if titanPayload != None:
-                for i in titanPayload:
-                    # write error to titan item
-                    # prov_stat_update(i['id'], "error", i['user'], "received error code " + str(response.status_code))
-                    data = json.loads(response.text)
-                # return json.loads(response.text)
-                return data
             else:
                 print("HTTP CODE: {} SUCCESS RESPONSE: {}".format(response.status_code, response.text))
                 data = json.loads(response.text)
@@ -61,12 +53,6 @@ def send_request(url="", requestType="GET", payload="", titanPayload=None):
         if response.status_code in range(400, 599):
             print("HTTP CODE: {} ERROR RESPONSE: {}".format(
                 response.status_code, response.text))
-            if titanPayload != None:
-                for i in titanPayload:
-                    # write error to titan item
-                    data = json.loads(response.text)
-                return data
-            else:
                 data = json.loads(response.text)
 
             return data
