@@ -38,7 +38,7 @@ def send_request(url="", requestType="GET", payload=""):
         }
 
         response = requests.request(requestType, url, headers=headers,
-                                    verify=False, proxies=proxyDict, data=payload)
+                                    verify=False, data=payload)
 
         print("#### RESPONSE  #####")
 
