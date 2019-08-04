@@ -79,36 +79,41 @@ def home():
 def make(size):
     ''' Route will brew a coffee based on 
     the size given (small, medium, large)'''
+    try:
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
+        mode = GPIO.getmode()
+        wLevel = 16
+        lidSensor = 40
+        # Setup Pins
+        GPIO.setup(wLevel, GPIO.OUT)
+        GPIO.setup(lidSensor, GPIO.OUT)
+        GPIO.output(wLevel,1) #set water to full
+        GPIO.output(lidSensor,1) #open the relay
+        time.sleep(3)
+        GPIO.output(lidSensor,0) #open the relay
 
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setwarnings(False)
-    mode = GPIO.getmode()
-    wLevel = 16
-    # Setup Pins
-    GPIO.setup(wLevel, GPIO.OUT)
+        # set channel
+        # GPIO.setup(channel, GPIO.IN)
+        # GPIO.setup(channel, GPIO.OUT)
+        # GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
+        # read channel
+        # GPIO.input(channel)
+        # GPIO.output(channel, state)
+        # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
+
+        # GPIO.setup(wLevel, GPIO.OUT)
+        # while True:
+        #     GPIO.output(wLevel,1)
+        #     time.sleep(1)
+        #     GPIO.output(wLevel,0)
+        #     time.sleep(1)
 
 
-    GPIO.output(wLevel,1) #set water to full
-
-    # set channel
-    # GPIO.setup(channel, GPIO.IN)
-    # GPIO.setup(channel, GPIO.OUT)
-    # GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
-    # read channel
-    # GPIO.input(channel)
-    # GPIO.output(channel, state)
-    # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
-
-    # GPIO.setup(wLevel, GPIO.OUT)
-    # while True:
-    #     GPIO.output(wLevel,1)
-    #     time.sleep(1)
-    #     GPIO.output(wLevel,0)
-    #     time.sleep(1)
-
-
-    GPIO.cleanup()
-    return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
+        GPIO.cleanup()
+        return Response(json.dumps({"Brew":"Success"}), mimetype='application/json')
+    except Exception as e:
+        return Response(json.dumps(e), mimetype='application/json')
     
 if __name__ == "__main__":
     app.run(debug=True,port=80, host='0.0.0.0')
