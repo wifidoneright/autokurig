@@ -87,7 +87,7 @@ def make(size):
     # Setup Pins
     try:
         print("activating pins")
-        GPIO.setup(wLevel, GPIO.OUT)
+        GPIO.setup(brewLarge, GPIO.OUT)
         GPIO.setup(lidSensor, GPIO.OUT)
     except Exception as e:
         return Response(e)
