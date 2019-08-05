@@ -95,9 +95,9 @@ def make(size):
     GPIO.output(lidSensor,1) #open the relay
     time.sleep(1)
     GPIO.output(lidSensor,0) #open the relay
-    time.sleep(3)
+    time.sleep(2)
     GPIO.output(brewLarge,1) #set water to full
-
+    time.sleep(10)
     # set channel
     # GPIO.setup(channel, GPIO.IN)
     # GPIO.setup(channel, GPIO.OUT)
