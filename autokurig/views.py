@@ -82,22 +82,37 @@ def make(size):
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
     mode = GPIO.getmode()
-    brewLarge = 16
-    lidSensor = 40
+    pwrButton = 11
+    lidSensor = 13
+    brewLarge = 15
+    brewMed = 16
+    brewSmall = 18
+    
+    
+    
     # Setup Pins
     try:
         print("activating pins")
-        GPIO.setup(brewLarge, GPIO.OUT,initial=GPIO.LOW)
+        GPIO.setup(pwrButton, GPIO.OUT,initial=GPIO.LOW)
         GPIO.setup(lidSensor, GPIO.OUT,initial=GPIO.LOW)
+        GPIO.setup(brewLarge, GPIO.OUT,initial=GPIO.LOW)
+        GPIO.setup(brewMed, GPIO.OUT,initial=GPIO.LOW)
+        GPIO.setup(brewSmall, GPIO.OUT,initial=GPIO.LOW)
     except Exception as e:
         return Response(e)
-    GPIO.output(brewLarge,0) #set water to full
-    GPIO.output(lidSensor,1) #open the relay
+
+    #power on
+    GPIO.output(pwrButton,1) 
     time.sleep(1)
-    GPIO.output(lidSensor,0) #open the relay
-    time.sleep(2)
-    GPIO.output(brewLarge,1) #set water to full
-    time.sleep(10)
+    GPIO.output(pwrButton,0)
+
+
+    # GPIO.output(lidSensor,1) #open the relay
+    # time.sleep(1)
+    # GPIO.output(lidSensor,0) #open the relay
+    # time.sleep(2)
+    # GPIO.output(brewLarge,1) #set water to full
+    # time.sleep(10)
     # set channel
     # GPIO.setup(channel, GPIO.IN)
     # GPIO.setup(channel, GPIO.OUT)
