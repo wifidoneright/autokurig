@@ -93,58 +93,47 @@ def make(size):
     # Setup Pins
     try:
         print("activating pins")
-        GPIO.setup(pwrButton, GPIO.OUT,initial=GPIO.LOW)
-        GPIO.setup(lidSensor, GPIO.OUT,initial=GPIO.LOW)
-        GPIO.setup(brewLarge, GPIO.OUT,initial=GPIO.LOW)
-        GPIO.setup(brewMed, GPIO.OUT,initial=GPIO.LOW)
-        GPIO.setup(brewSmall, GPIO.OUT,initial=GPIO.LOW)
+        GPIO.setup(pwrButton, GPIO.OUT,initial=1)
+        GPIO.setup(lidSensor, GPIO.OUT,initial=1)
+        GPIO.setup(brewLarge, GPIO.OUT,initial=1)
+        GPIO.setup(brewMed, GPIO.OUT,initial=1)
+        GPIO.setup(brewSmall, GPIO.OUT,initial=1)
     except Exception as e:
         return Response(e)
 
     #power on
-    GPIO.output(pwrButton,1) 
+    GPIO.output(pwrButton,0) 
     time.sleep(1)
-    GPIO.output(pwrButton,0)
+    GPIO.output(pwrButton,1)
 
     time.sleep(5)
 
     #trip the lid sensor
-    GPIO.output(lidSensor,1) 
+    GPIO.output(lidSensor,0) 
     time.sleep(1)
-    GPIO.output(lidSensor,0)
+    GPIO.output(lidSensor,1)
 
     time.sleep(5)
 
     #Large Cup
-    GPIO.output(brewLarge,1) 
+    GPIO.output(brewLarge,0) 
     time.sleep(1)
-    GPIO.output(brewLarge,0)
+    GPIO.output(brewLarge,1)
 
     time.sleep(5)
 
     #power on
-    GPIO.output(brewMed,1) 
+    GPIO.output(brewMed,0) 
     time.sleep(1)
-    GPIO.output(brewMed,0)
+    GPIO.output(brewMed,1)
 
     time.sleep(5)
 
     #power on
-    GPIO.output(brewSmall,1) 
+    GPIO.output(brewSmall,0) 
     time.sleep(1)
-    GPIO.output(brewSmall,0)
+    GPIO.output(brewSmall,1)
 
-
-    # GPIO.output(lidSensor,1) #open the relay
-    # time.sleep(1)
-    # GPIO.output(lidSensor,0) #open the relay
-    # time.sleep(2)
-    # GPIO.output(brewLarge,1) #set water to full
-    # time.sleep(10)
-    # set channel
-    # GPIO.setup(channel, GPIO.IN)
-    # GPIO.setup(channel, GPIO.OUT)
-    # GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)
     # read channel
     # GPIO.input(channel)
     # GPIO.output(channel, state)
