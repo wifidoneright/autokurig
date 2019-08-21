@@ -87,7 +87,12 @@ def make(size):
     brewLarge = 29
     brewMed = 33
     brewSmall = 36
-    
+    if size == "small":
+        brew = brewSmall
+    if size == "medium":
+        brew = brewMed
+    if size == "large":
+        brew = brewLarge
     
     
     # Setup Pins
@@ -114,27 +119,13 @@ def make(size):
     GPIO.output(lidSensor,1)
 
     time.sleep(5)
-
-    #Large Cup
-    GPIO.output(brewLarge,0) 
+    
+    #Cup Size
+    GPIO.output(brew,0) 
     time.sleep(1)
-    GPIO.output(brewLarge,1)
+    GPIO.output(brew,1)
 
-    time.sleep(5)
-
-    #Medium Cup
-    GPIO.output(brewMed,0) 
-    time.sleep(1)
-    GPIO.output(brewMed,1)
-
-    time.sleep(5)
-
-    #Small Cup
-    GPIO.output(brewSmall,0) 
-    time.sleep(1)
-    GPIO.output(brewSmall,1)
-
-    time.sleep(10)
+    time.sleep(20)
 
      #power off
     GPIO.output(pwrButton,0) 
