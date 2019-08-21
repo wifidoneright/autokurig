@@ -126,7 +126,7 @@ def make(size):
     time.sleep(1)
     GPIO.output(brew,1)
 
-    time.sleep(50)
+    time.sleep(100)
 
      #power off
     GPIO.output(pwrButton,0) 
