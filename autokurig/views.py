@@ -87,6 +87,7 @@ def make(size):
     brewLarge = 29
     brewMed = 33
     brewSmall = 36
+
     if size == "small":
         brew = brewSmall
     if size == "medium":
@@ -125,24 +126,12 @@ def make(size):
     time.sleep(1)
     GPIO.output(brew,1)
 
-    time.sleep(20)
+    time.sleep(50)
 
      #power off
     GPIO.output(pwrButton,0) 
     time.sleep(1)
     GPIO.output(pwrButton,1)
-
-    # read channel
-    # GPIO.input(channel)
-    # GPIO.output(channel, state)
-    # State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.
-
-    # GPIO.setup(brewLarge, GPIO.OUT)
-    # while True:
-    #     GPIO.output(brewLarge,1)
-    #     time.sleep(1)
-    #     GPIO.output(brewLarge,0)
-    #     time.sleep(1)
 
 
     GPIO.cleanup()
