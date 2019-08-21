@@ -83,10 +83,10 @@ def make(size):
     GPIO.setwarnings(False)
     mode = GPIO.getmode()
     pwrButton = 11
-    lidSensor = 13
-    brewLarge = 15
-    brewMed = 16
-    brewSmall = 18
+    lidSensor = 15
+    brewLarge = 18
+    brewMed = 22
+    brewSmall = 29
     
     
     
@@ -105,6 +105,34 @@ def make(size):
     GPIO.output(pwrButton,1) 
     time.sleep(1)
     GPIO.output(pwrButton,0)
+
+    time.sleep(5)
+
+    #trip the lid sensor
+    GPIO.output(lidSensor,1) 
+    time.sleep(1)
+    GPIO.output(lidSensor,0)
+
+    time.sleep(5)
+
+    #Large Cup
+    GPIO.output(brewLarge,1) 
+    time.sleep(1)
+    GPIO.output(brewLarge,0)
+
+    time.sleep(5)
+
+    #power on
+    GPIO.output(brewMed,1) 
+    time.sleep(1)
+    GPIO.output(brewMed,0)
+
+    time.sleep(5)
+
+    #power on
+    GPIO.output(brewSmall,1) 
+    time.sleep(1)
+    GPIO.output(brewSmall,0)
 
 
     # GPIO.output(lidSensor,1) #open the relay
