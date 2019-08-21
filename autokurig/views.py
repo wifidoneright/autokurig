@@ -122,17 +122,24 @@ def make(size):
 
     time.sleep(5)
 
-    #power on
+    #Medium Cup
     GPIO.output(brewMed,0) 
     time.sleep(1)
     GPIO.output(brewMed,1)
 
     time.sleep(5)
 
-    #power on
+    #Small Cup
     GPIO.output(brewSmall,0) 
     time.sleep(1)
     GPIO.output(brewSmall,1)
+
+    time.sleep(10)
+
+     #power off
+    GPIO.output(pwrButton,0) 
+    time.sleep(1)
+    GPIO.output(pwrButton,1)
 
     # read channel
     # GPIO.input(channel)
