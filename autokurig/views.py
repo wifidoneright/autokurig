@@ -84,9 +84,9 @@ def make(size):
     mode = GPIO.getmode()
     pwrButton = 11
     lidSensor = 15
-    brewLarge = 18
-    brewMed = 22
-    brewSmall = 29
+    brewLarge = 29
+    brewMed = 33
+    brewSmall = 36
     
     
     
